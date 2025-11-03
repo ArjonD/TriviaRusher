@@ -1,8 +1,31 @@
 import { Stack } from "expo-router";
-import { KeyboardAvoidingView, Platform } from "react-native";
 
 export default function RootLayout() {
-    return <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-        <Stack />
-    </KeyboardAvoidingView>;
+    return (
+        <Stack>
+            <Stack.Screen
+                name="(tabs)"
+                options={{
+                    headerShown: false,
+                }}
+            />
+            <Stack.Screen
+                name="+not-found"
+                options={{
+                    headerTitle: "Oops!",
+                    headerStyle: { backgroundColor: "grey" },
+                    headerTintColor: "white"
+                }}
+            />
+            <Stack.Screen
+                name="score.tsx"
+                options={{
+                    title: "Your Score",
+                    headerStyle: { backgroundColor: "#56ff01ff" },
+                    headerTintColor: "#fff"
+                }}
+            />
+        </Stack>
+
+    );
 }
