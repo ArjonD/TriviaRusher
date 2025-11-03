@@ -1,0 +1,13 @@
+TriviaRusher päiväkirja.
+
+Ensimmäinen viikko:
+
+oli hidas viikko, sillä suunnittelin projektia ja sen sisältöä minkälaiseksi haluaisin.
+Alussa oli vaikeuksia projektin aloittamisessa, sillä tuli iso oikosulku en muistanut miten projektia tehtiin,
+sekä lisäämään sen git repositoriin. Sain selvitettyy palaamalla ensimmäiseen kurssimateriaaliin.
+Toinen ongelma oli myös suoraan projektin aloittaminen. Kun ei ole suoraan annettu polku mitä tehdään,
+siitä tuli pieni yliajattelu ja en osanut tehdä mitään, joten päätin tehdä sivut, jotka haluan tulla projektiin,
+jonka jälkeen katoin samalla videoita miten teen ne hyvin. Videossa löysin kiinnostavan asian joka oli +not-found.tsx
+ja lisäsin sen myös omaan projektiin. Se sisältää <Button title="Return to Home screen" onPress={() => router.push('/')} />  koodin,
+mutta antoi error, koska index on (tabs) sisällä ja /(tabs)/index ei toimi. Sain korjattua lisäämällä @ts-ignore.
+Seuraava vaihe on apin sekä quiz ja score sivun tekeminen.
