@@ -11,3 +11,11 @@ jonka jälkeen katoin samalla videoita miten teen ne hyvin. Videossa löysin kii
 ja lisäsin sen myös omaan projektiin. Se sisältää <Button title="Return to Home screen" onPress={() => router.push('/')} />  koodin,
 mutta antoi error, koska index on (tabs) sisällä ja /(tabs)/index ei toimi. Sain korjattua lisäämällä @ts-ignore.
 Seuraava vaihe on apin sekä quiz ja score sivun tekeminen.
+
+Viikko 2:
+
+Tällä viikolla keskityin tekemään quiz ja index sivua. Api on tehty ja quiz on melkein valmiina muutaman erroria heittää, jonka
+yritän korjata ensi viikolla. Index sivulla saan valittua kategorian ja vaikeustason, mutta kun lähetän ne quiz sivulle, sovellus kaatuu.
+Olen yrittänyt korjata ongelmaa usealla eri tavalla, mutta en ole löytänyt ratkaisua vielä. Apissa oli hieman vaikeuksia, sillä piti käyttää decoder,
+joka oli uusi asia mulle, sekä piti tehdä fetchaukset eri tavalla kun aijemmin projekteissa. Joudun odottamaan userin valintaa, ennenkuin voin fetchata kysymykset.
+sitten lähetän ne paramsina, jonka avulla const url = new URL tekee linkin valmiiksi. Ensi viikolla yritän korjata quiz sivun ongelmat ja tehdä score sivun valmiiksi.
