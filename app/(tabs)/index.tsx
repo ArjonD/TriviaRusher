@@ -1,12 +1,51 @@
-import { Text, View, StyleSheet } from 'react-native';
+import { fetchCategories, fetchQuestions } from '@/api/triviaApi';
+import CategoryButton from '@/components/categoryButton';
+import DifficultyButton from '@/components/difficultyButton';
+import { Category, Difficulty } from '@/types/trivia';
+import { useRouter } from "expo-router";
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function Index() {
+    const router = useRouter();
+
+    const [categories, setCategories] = useState<Category[]>([]);
+    const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+    const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty | null>(null);
+
+    useEffect(() => {
+        async function loadCategories() {
+            const result = await fetchCategories();
+            setCategories(result);
+        }
+        loadCategories();
+    }, []);
+
+    const handleStartQuiz = async () => {
+        if (!selectedCategory || !selectedDifficulty) {
+            alert("Pick both category and difficulty first");
+            return;
+        }
+
+        const questions = await fetchQuestions(
+            10,
+            selectedDifficulty,
+            selectedCategory.id
+        );
+
+
+        router.push({ pathname: "/quiz", params: { questions: JSON.stringify(questions) } });
+    };
+
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>
-                Welcome to TriviaRusher!
-            </Text>
-
+            <View style={styles.buttonContainer}>
+                <DifficultyButton onSelect={setSelectedDifficulty} />
+                <CategoryButton categories={categories} onSelect={setSelectedCategory} />
+            </View>
+            <TouchableOpacity onPress={handleStartQuiz} style={styles.button}>
+                <Text style={styles.buttonText}>Start Quiz</Text>
+            </TouchableOpacity>
         </View>
     );
 }
@@ -20,5 +59,24 @@ const styles = StyleSheet.create({
     },
     text: {
         color: "white",
+        fontSize: 24,
+        fontWeight: "bold",
     },
-})
+    buttonText: {
+        color: "#fff",
+        fontSize: 16,
+        fontWeight: "bold",
+    },
+    buttonContainer: {
+        flexDirection: "row",
+        marginTop: 20,
+        gap: 20,
+    },
+    button: {
+        backgroundColor: "#417052",
+        padding: 12,
+        borderRadius: 8,
+        alignItems: "center",
+        marginTop: 20,
+    },
+});
