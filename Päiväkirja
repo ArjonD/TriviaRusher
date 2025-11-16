@@ -19,3 +19,16 @@ yritän korjata ensi viikolla. Index sivulla saan valittua kategorian ja vaikeus
 Olen yrittänyt korjata ongelmaa usealla eri tavalla, mutta en ole löytänyt ratkaisua vielä. Apissa oli hieman vaikeuksia, sillä piti käyttää decoder,
 joka oli uusi asia mulle, sekä piti tehdä fetchaukset eri tavalla kun aijemmin projekteissa. Joudun odottamaan userin valintaa, ennenkuin voin fetchata kysymykset.
 sitten lähetän ne paramsina, jonka avulla const url = new URL tekee linkin valmiiksi. Ensi viikolla yritän korjata quiz sivun ongelmat ja tehdä score sivun valmiiksi.
+
+Viikko 3:
+
+Tällä viikolla sain korjattua quiz sivun ongelmat, jotka johtuivat siitä, että en ollut määritellyt kunnolla parametreja. Jouduin käyttämään copilotia apuna, jotta sain 
+selville miten määritellä parametrit oikein. Sain myös tehtyä score sivun, joka näyttää käyttäjälle pisteet ja antaa palautetta suorituksesta. Käytin prosenttilaskua saadakseen selville
+kuinka hyvin käyttäjä suoritti kyselyn ja sen mukaan sai toivottavasti hyvän palautteen. Oli haasteitta aika paljon, sillä yritin pilkoa koodia pienempiin osiin,
+jotta se olisi helpompi hallita. esimerkiksi tein viime viikolla quiz sivun ja jätin piste järjestelmän ja ajastuksen tekemättä,
+että saan keskittyä ensin perus toiminnallisuuteen ennen lisä ominaisuudet. Joten joudun tekemään muutoksia aikaisempiin tiedostoihin
+jatkuvasti, jotta saan pistejärjestelmän myös korjattua. tuli lisättyä myös quizcontext.tsx sillä kokeillin web selaimella ja huomasin,
+että urlssä näkyi vastaukset, sillä ne lähetettiin paramsina. Joten päätin tehdä contextin, jotta saan vastaukset piiloon urlistä.
+lisäsin pistejärjestelmän samaan tiedostoon, sillä se meni mielestäni mukavasti yhteen. Keskityn ensi viikolla mahdollisesti highscore.tsx sivun tekemiseen,
+eli näytetään parhaat pisteet tai jos tulee parempi idea voi mahdollisesti vaihtua. asyncstorage käytetään sen totetukseen. jos aikaa jää, teen quiz sivulle ajastimen,
+
