@@ -15,13 +15,7 @@ export default function TabsLayout() {
                 options={{
                     title: 'Home',
                 }}
-            />
-            <Tabs.Screen
-                name="quiz"
-                options={{
-                    title: 'Quiz', headerShown: false
-                }}
-            />
+            />      
             <Tabs.Screen
                 name="high-scores"
                 options={{

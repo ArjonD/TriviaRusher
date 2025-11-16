@@ -30,8 +30,13 @@ export async function fetchQuestions(
         url.searchParams.set("category", String(categoryId));
     }
 
+    console.log('Fetching questions from:', url.toString());
+
     const response = await fetch(url.toString());
     const data = await response.json();
+
+    console.log('API Response:', data);
+    console.log('Number of results:', data.results?.length);
 
     return data.results.map((quest: any): Question => {
         const question = decodeText(quest.question);
@@ -39,7 +44,10 @@ export async function fetchQuestions(
         const incorrect = quest.incorrect_answers.map((incans: string) => decodeText(incans));
         const options = shuffleArray([correctAnswer, ...incorrect]);
 
-        return { question, correctAnswer, options };
+        const mappedQuestion = { question, correctAnswer, options };
+        console.log('Mapped question:', mappedQuestion);
+        
+        return mappedQuestion;
     });
 }
 

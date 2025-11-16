@@ -5,9 +5,11 @@ import { Category, Difficulty } from '@/types/trivia';
 import { useRouter } from "expo-router";
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useQuiz } from '@/contexts/QuizContext';
 
 export default function Index() {
     const router = useRouter();
+    const { setQuestions } = useQuiz();
 
     const [categories, setCategories] = useState<Category[]>([]);
     const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
@@ -33,8 +35,8 @@ export default function Index() {
             selectedCategory.id
         );
 
-
-        router.push({ pathname: "/quiz", params: { questions: JSON.stringify(questions) } });
+        setQuestions(questions);
+        router.push("/quiz");
     };
 
     return (

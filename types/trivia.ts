@@ -8,5 +8,6 @@ export type Difficulty = 'easy' | 'medium' | 'hard';
 export type Question = {
     question: string;
     correctAnswer: string;
-    options: string[]; 
+    options: string[];
+    incorrect_answers?: string[];
 };
