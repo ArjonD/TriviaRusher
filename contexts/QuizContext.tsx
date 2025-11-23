@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { Question } from '@/types/trivia';
+import { Question, Category, Difficulty } from '@/types/trivia';
 
 type QuizContextType = {
     questions: Question[];
@@ -8,6 +8,10 @@ type QuizContextType = {
     setScore: (score: number) => void;
     addPoints: (points: number) => void;
     resetScore: () => void;
+    category: Category | null;
+    setCategory: (category: Category | null) => void;
+    difficulty: Difficulty | null;
+    setDifficulty: (difficulty: Difficulty | null) => void;
 };
 
 const QuizContext = createContext<QuizContextType | undefined>(undefined);
@@ -15,6 +19,8 @@ const QuizContext = createContext<QuizContextType | undefined>(undefined);
 export function QuizProvider({ children }: { children: ReactNode }) {
     const [questions, setQuestions] = useState<Question[]>([]);
     const [score, setScore] = useState(0);
+    const [category, setCategory] = useState<Category | null>(null);
+    const [difficulty, setDifficulty] = useState<Difficulty | null>(null);
 
     const addPoints = (points: number) => {
         setScore(prev => prev + points);
@@ -31,7 +37,11 @@ export function QuizProvider({ children }: { children: ReactNode }) {
             score, 
             setScore, 
             addPoints, 
-            resetScore 
+            resetScore,
+            category,
+            setCategory,
+            difficulty,
+            setDifficulty
         }}>
             {children}
         </QuizContext.Provider>

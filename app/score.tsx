@@ -1,14 +1,32 @@
 import { useQuiz } from '@/contexts/QuizContext';
 import { useRouter } from 'expo-router';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useEffect } from 'react';
+import { saveScore } from '@/utilities/scoreStorage';
 
 export default function Score() {
     const router = useRouter();
-    const { score, questions } = useQuiz();
+    const { score, questions, category, difficulty } = useQuiz();
 
     const totalQuestions = questions.length;
     const maxScore = totalQuestions * 10;
     const percentage = totalQuestions > 0 ? Math.round((score / maxScore) * 100) : 0;
+
+    useEffect(() => {
+        const saveCurrentScore = async () => {
+            if (totalQuestions > 0) {
+                await saveScore({
+                    score,
+                    totalQuestions,
+                    percentage,
+                    category: category?.name,
+                    difficulty: difficulty || 'unknown'
+                });
+            }
+        };
+        
+        saveCurrentScore();
+    }, [score, totalQuestions, percentage, category, difficulty]);
 
     const getPerformanceMessage = () => {
         if (percentage === 100) return "Perfect! 🎉";

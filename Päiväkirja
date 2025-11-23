@@ -32,3 +32,13 @@ että urlssä näkyi vastaukset, sillä ne lähetettiin paramsina. Joten pääti
 lisäsin pistejärjestelmän samaan tiedostoon, sillä se meni mielestäni mukavasti yhteen. Keskityn ensi viikolla mahdollisesti highscore.tsx sivun tekemiseen,
 eli näytetään parhaat pisteet tai jos tulee parempi idea voi mahdollisesti vaihtua. asyncstorage käytetään sen totetukseen. jos aikaa jää, teen quiz sivulle ajastimen,
 
+Viikko 4:
+
+Ajastin tuli lisättyä quiz sivulle, joka kestää 10 sekuntia per kysymys ja jos aika loppuu, siirrytään automaattisesti seuraavaan kysymykseen. Päätelin aluksi, että tulee olee helppoa,
+mutta yllättävästi aika haastava oli, sillä en ollut tehnyt aikaisemmin ajastinta tai samankaltaista. Ajastimen jälkeen tuli asyncstorage käyttöön highscore sivulla, jolla tallennetaan
+parhaat pisteet. Se oli myös uusi asia ja oli vaikea ymmärtää miten se toimii ja miten saan tiedot tallenettua oikein. Päiväyksen lisääminen pisteiden yhteyteen oli myös haastavaa, jouduin 
+käyttämään copilotia tukena sen kanssa. Lopulta sain sen toimimaan ja nyt käyttäjät voivat nähdä milloin he saavuttivat parhaat pisteensä. Paransin tyylityksiä esimerkiksi tabs layout
+oli mukava tehdä, sillä löysin youtube videon, joka näytti eri menetelmiä tyylitykseen ja sivun, josta näkee vector iconit. highscore sivun sekä index sivua tuli parannettua,
+mutta käytin copilotia apuna ideoita miten teen sen hienoksi ja muunsin sitten omaan tyyliin. Päätelin, että teen tyylityksen nopeasti pois alta, jotta ehdisin tehdä animaatioita.
+Animaatioiden tekeminen ei ollut tosi hankala, sillä documentaatio oli selkeä ja löytyy youtube videoita. Nimetykset animaatioille oli myös selkeä esimerkiksi loop ja pulse on itsestään selviä mitä tekevät.
+Niitä ei tullut lisättyä paljon, mutta löytyy index sivulla, sekä quiz sivulla.

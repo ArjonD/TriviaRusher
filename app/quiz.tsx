@@ -2,6 +2,7 @@ import { Text, View, StyleSheet } from 'react-native';
 import { useRouter } from "expo-router";
 import { useState, useMemo, useEffect } from 'react';
 import QuestionCard from '@/components/QuestionCard';
+import Timer from '@/components/Timer';
 import { useQuiz } from '@/contexts/QuizContext';
 
 export default function Quiz() {
@@ -22,12 +23,15 @@ export default function Quiz() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
     const [showFeedback, setShowFeedback] = useState(false);
+    const [timerKey, setTimerKey] = useState(0); 
+    const [isTimerActive, setIsTimerActive] = useState(true);
     const currentQuestion = questions[currentIndex];
 
     const shuffledAnswers = useMemo(() => {
-        // Reset feedback when moving to new question
         setSelectedAnswer(null);
         setShowFeedback(false);
+        setTimerKey(prev => prev + 1);
+        setIsTimerActive(true);
         
         if (currentQuestion.options) {
             return currentQuestion.options;
@@ -49,6 +53,7 @@ export default function Quiz() {
         
         setSelectedAnswer(selected);
         setShowFeedback(true);
+        setIsTimerActive(false);
         
         const isCorrect = selected === currentQuestion.correctAnswer;
         
@@ -60,8 +65,23 @@ export default function Quiz() {
             if (currentIndex + 1 < questions.length) {
                 setCurrentIndex(currentIndex + 1);
             } else {
-                // Calculate final score and navigate to score screen
                 const finalScore = score + (isCorrect ? 10 : 0);
+                router.replace('/score');
+            }
+        }, 1000);
+    };
+
+    const handleTimeUp = () => {
+        if (showFeedback) return;
+        
+        setSelectedAnswer(null);
+        setShowFeedback(true);
+        setIsTimerActive(false);
+        
+        setTimeout(() => {
+            if (currentIndex + 1 < questions.length) {
+                setCurrentIndex(currentIndex + 1);
+            } else {
                 router.replace('/score');
             }
         }, 1000);
@@ -77,6 +97,14 @@ export default function Quiz() {
                     Score: {score}
                 </Text>
             </View>
+            
+            <Timer 
+                key={timerKey}
+                duration={10}
+                onTimeUp={handleTimeUp}
+                isActive={isTimerActive}
+            />
+            
             <QuestionCard 
                 question={currentQuestion.question}
                 answers={shuffledAnswers}

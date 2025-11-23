@@ -1,6 +1,6 @@
+import { Difficulty } from '@/types/trivia';
 import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { Difficulty } from '@/types/trivia';
 
 const difficulties: Difficulty[] = ['easy', 'medium', 'hard'];
 
@@ -8,7 +8,7 @@ type Props = {
     onSelect?: (difficulty: Difficulty | null) => void;
 };
 
-const DifficultyButton: React.FC<Props> = ( { onSelect }) => {
+const DifficultyButton: React.FC<Props> = ({ onSelect }) => {
     const [index, setIndex] = useState<number | null>(null);
 
     const handlePress = () => {
@@ -19,7 +19,11 @@ const DifficultyButton: React.FC<Props> = ( { onSelect }) => {
 
 
     const getLabel = () => {
-        return index === null ? 'Select difficulty' : difficulties[index];
+        if (index === null) return 'Select difficulty';
+
+
+        const difficulty = difficulties[index];
+        return difficulty.charAt(0).toUpperCase() + difficulty.slice(1);
     };
 
     return (
